@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表</title>
+  </head>
+  <body>
+    <!-- 有序列表(Ordered list) ol -->
+    <h2>做实验的步骤</h2>
+    <ol>
+        <!-- 列表项(List Items) li -->
+        <li>步骤一</li>
+        <li>步骤二</li>
+        <li>步骤三</li>
+        <li>步骤四</li>
+    </ol>
+    <!-- 无序列表(Unordered list) ul -->
+    <h2>我想去的城市</h2>
+    <ul>
+        <li>成都</li>
+        <li>
+            <span>上海</span>
+            <ul>
+                <li>东方明珠</li>
+                <li>外滩</li>
+            </ul>
+        </li>
+        <li>北京</li>
+        <li>深圳</li>
+    </ul>
+    <!-- 自定义列表(Definition List) dl -->
+    <h2>如何更好的学习</h2>
+    <dl>
+        <dt>做好笔记</dt>   <!-- title -->
+        <dd>笔记是我们复习的资料</dd>    <!-- description -->
+        <dt>多加练习</dt>
+        <dd>要自己写代码</dd>
+    </dl>
+  </body>
+</html>
+<!-- 
+注意事项：
+1.列表里面最好只用li元素，如果要引入其他元素，最好用li嵌套一遍
+2.不要单独使用<li></li>
+3.列表内可以进行嵌套
+4.一个术语名称可以使用多个描述
+5.有序列表侧重顺序；无序列表应用场景很多，搜索结果，选择窗口都可以用；自定义列表dd里可以套多个li，也可以在dt后使用多个dd进行描述 -->

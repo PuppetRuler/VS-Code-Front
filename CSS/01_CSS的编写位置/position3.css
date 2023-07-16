@@ -1,0 +1,13 @@
+/* 结构与样式完全分离，所有HTML文件都可以复用，结构清晰，建立的缓存可以提升读取速度 */
+h1 {
+    color: red;
+    font-size: 60px;
+  }
+  h2{
+    color: green;
+    font-size: 80px;
+
+  }
+  img{
+    width: 200px;
+  }

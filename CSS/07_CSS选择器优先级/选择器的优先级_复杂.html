@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器的优先级_复杂</title>
+    <style>
+        /* 格式：(a,b,c)
+        a：ID选择器的个数
+        b：类、伪类、属性选铎器的个数
+        c：元素、伪元素选器的个数 */
+        #atguigu {
+            color: orange;
+        }
+        .container span.slogan {
+            color: red;
+        }
+        div>p>span:nth-child(1) {
+            color: green;
+        }
+        .slogan {
+            color: pink !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>
+            <span class="slogan" id="atguigu" style="color: blue;">尚硅谷</span>
+            <span>学习前端</span>
+        </p>
+    </div>
+</body>
+</html>

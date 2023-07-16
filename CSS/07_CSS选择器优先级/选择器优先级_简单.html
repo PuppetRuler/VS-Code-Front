@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器优先级_简单</title>
+    <style>
+    /* 行内 > ID选择器 > 类选择器 > 元素选择器 > 通配选择器 */
+    #atguigu {
+        color: orange;
+    }
+    .slogan {
+        color: yellow;
+    }
+    h2 {
+        color: green;
+    }
+    * {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <h2 class="slogan" id="atguigu">尚硅谷</h2>
+</body>
+</html>

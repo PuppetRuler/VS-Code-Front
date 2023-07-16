@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    input::placeholder {
+      color: chocolate;
+    }
+    [type="text"]:focus,
+    [type="password"]:focus {
+      background-color: gray;
+      color: blue;
+    }
+    iframe {
+      width: 1000px;
+      height: 600px;
+    }
+    label:hover,
+    [type="submit"]:hover,
+    [type="reset"]:hover,
+    [type="button"]:hover {
+      color: aqua;
+    }
+    label:active,
+    [type="submit"]:active,
+    [type="reset"]:active,
+    [type="button"]:active {
+      color: pink;
+      size: 20px;
+    }
+  </style>
+  <body>
+    <fieldset>
+      <legend>嘗試</legend>
+      <form action="http://www.jd.com" target="_blank">
+        <label for="zhanghu">賬號：</label>
+        <input
+          type="text"
+          placeholder="賬戶名"
+          id="zhanghu"
+          name="account"
+        /><br />
+        <label for="mima">密碼：</label>
+        <input type="password" placeholder="密碼" id="mima" name="pwd" /><br />
+        <input type="submit" value="確定" />
+        <input type="reset" value="重置" />
+        <input type="button" value="檢查" />
+      </form>
+    </fieldset>
+    <form action="http://so.toutiao.com/search" target="container">
+      <input type="text" name="keyword" />
+      <input type="submit" value="搜索" />
+    </form>
+    <iframe frameborder="0" name="container"></iframe>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颜色_第三种表示_HEX或HEXA</title>
+    <style>
+        /* HEX的原理同与rgb一样，依然是通过：红、绿、蓝色进行组合，只不过要用6个数字，分成3组来表达，
+        格式为：#rrggbb */
+        /* 每一位数字的取值范围是：0~f,即：（0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f)
+        所以每一种光的最小值是：0，最大值是：ff */
+        .atguigu1 {
+            color: #ff0000;
+        }
+        .atguigu2 {
+            color: #00ff00;
+        }
+        .atguigu3 {
+            color: #0000ff;
+        }
+        .atguigu4 {
+            color: #87ceeb88;
+        }
+        /* 如果每种颜色的两位都是相同的，就可以简写 */
+        /* 但要注意前三位简写了，那么透明度就也要简写 */
+        .atguigu5 {
+            color: #fcdf;
+        }
+
+    </style>
+</head>
+<body>
+    <h2 class="atguigu1">尚硅谷1</h2>
+    <h2 class="atguigu2">尚硅谷2</h2>
+    <h2 class="atguigu3">尚硅谷3</h2>
+    <h2 class="atguigu4">尚硅谷4</h2>
+    <h2 class="atguigu5">尚硅谷5</h2>
+</body>
+</html>
