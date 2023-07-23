@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位的层级</title>
+    <style>
+        /* 1.定位元素的显示层级比普通元素高，无论什么定位，显示层级都是一样的。
+        2.如果位置发生重叠，默认情况是：后面的元素，会显示在前面元素之上。
+        3.可以通过css属性z-index调整元素的显示层级。
+        4.z-inde×的属性值是数字，没有单位，值越大显示层级越高。
+        5.只有定位的元素设置z-index才有效。
+        6.如果z-index值大的元素，依然没有覆盖掉z-index值小的元素，那么请检查其包含块的层级。 */
+      .outer {
+        width: 500px;
+        background-color: skyblue;
+        border: 1px solid black;
+        font-size: 20px;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+      }
+      .box1 {
+        background-color: #888;
+      }
+      .box2 {
+        background-color: orange;
+        position: relative;
+        top: -150px;
+        left: 50px;
+        z-index: 1;
+      }
+      .box3 {
+        background-color: green;
+        position: absolute;
+        top: 130px;
+        left: 130px;
+      }
+      .box4 {
+        background-color: red;
+        position: fixed;
+        top: 200px;
+        left: 200px;
+        z-index: 50;
+      }
+      .box5 {
+        background-color: purple;
+        position: fixed;
+        top: 300px;
+        left: 300px;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+      <div class="box box4">4</div>
+    </div>
+    <div class="box box5">5</div>
+  </body>
+</html>

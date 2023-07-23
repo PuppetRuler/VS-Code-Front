@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>margin塌陷问题</title>
+    <style>
+      /* 什么是margin塌陷？
+            第一个子元素的上margin会作用在父元素上，最后一个子元素的下margin会作用在父元素上。 */
+      .outer {
+        widows: 400px;
+        height: 200px;
+        background-color: gray;
+        overflow: hidden;
+      }
+      .inner1 {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        /*下面这行代码是有问题的*/
+        margin-top: 50px;
+      }
+      .inner2 {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        /* 下面这行代码是有问题的 */
+        /* margin-bottom:50px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner1">inner1</div>
+      <div class="inner2">inner2</div>
+    </div>
+  </body>
+</html>

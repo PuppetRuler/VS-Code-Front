@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>margin合并问题</title>
+    <style>
+      /* 什么是 margin 合并？
+        上面兄弟元素的下外边距和下面兄弟元素的上外边距会合并，取一个最大的值，而不是相加。
+        如何解决 margin 合并？
+        无需解决，布局的时候上下的兄弟元素，只给一个设置上下外边距就可以了 */
+      box {
+        width: 200px;
+        height: 200px;
+      }
+      .box1 {
+        background-color: deepskyblue;
+        margin-bottom: 50px;
+      }
+      .box2 {
+        background-color: orange;
+        margin-top: 50px;
+      }
+      .test {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+      }
+      .testa {
+        background-color: purple;
+        margin-right: 50px;
+      }
+      .testb {
+        background-color: tomato;
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <hr />
+    <div class="test testa">a</div>
+    <div class="test testb">b</div>
+  </body>
+</html>

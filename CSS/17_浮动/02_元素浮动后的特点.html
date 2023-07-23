@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素浮动后的特点</title>
+    <style>
+        /* 特点： */
+        /* 脱离文档流。
+        不管浮动前是什么元素，浮动后：默认宽与高都是被内容撑开（尽可能小），而且可以设置宽高
+        不会独占一行，可以与其他元素共用一行。
+        不会margin合并，也不会margin塌陷，能够完美的设置四个方向的margin和padding。
+        不会像行内块一样被当做文本处理（没有行内块的空白问题）。 */
+        .outer {
+            width: 800px;
+            height: 400px;
+            background-color: gray;
+            padding: 10px;
+        }
+        .box {
+            font-size: 20px;
+        }
+        .box1 {
+            background-color: skyblue;
+        }
+        .box2 {
+            background-color: orange;
+            float: left;
+        }
+        .box3 {
+            background-color: green;
+            float: left;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box box1">盒子1</div>
+      <div class="box box2">盒子2</div>
+      <div class="box box3">盒子3</div>
+    </div>
+  </body>
+</html>

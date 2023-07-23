@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位的特殊应用</title>
+    <style>
+        /* 注意：
+        1.发生固定定位、绝对定位后，元素都变成了定位元素，默认宽高被内容撑开，且依然可以设置宽高。
+        2.发生相对定位后，元素依然是之前的显示模式。
+        3.以下所说的特殊应用，只针对绝对定位和固定定位的元素，不包括相对定位的元素。 */
+      .outer {
+        width: 800px;
+        height: 400px;
+        background-color: #888;
+        position: relative;
+      }
+      .inner {
+        width: 400px;
+        height: 100px;
+        background-color: orange;
+        position: absolute;
+        /* 方案一 */
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        /*方案二*/
+        /*1eft:50%;
+        top:50%;
+        margin-left:-200px;
+        margin-top:-50px;*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">你好啊</div>
+    </div>
+  </body>
+</html>

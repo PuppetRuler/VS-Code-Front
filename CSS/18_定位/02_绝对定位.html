@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绝对定位</title>
+    <style>
+        /* 参考点是包含块 */
+        /* 何为包含块？
+        1.没有脱离文档流的元素，父元素就是包含块
+        2脱离文档流的元素，第一个开启定位的祖先元素，就是他的包含块。 */
+        /* 绝对定位元素的特点：
+        1.脱离文档流，会对后面的兄弟元素、父元素有影响。
+        2.left不能和right一起设置，top和bottom不能一起设置。
+        3.绝对定位、浮动不能同时设置，如果同时设置，浮动失效，以定位为主。
+        4.绝对定位的元素，也能通过margin调整位置，但不推荐这样做。
+        5.无论是什么元素（行内、行内块、块级）设置为绝对定位之后，都变成了定位元素。 */
+      .outer {
+        width: 500px;
+        background-color: skyblue;
+        border: 1px solid black;
+        font-size: 20px;
+        padding: 20px;
+        position: relative;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+      }
+      .box1 {
+        background-color: #888;
+      }
+      .box2 {
+        background-color: orange;
+        position: absolute;
+        top: 220px;
+        left: 20px;
+        /* transition: 1s all linear; */
+      }
+      .box3 {
+        background-color: green;
+      }
+      .outer:hover .box2 {
+        left:220px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>解决浮动后的影响</title>
+    <style>
+      .outer {
+        width: 500px;
+        background-color: gray;
+        border: 1px solid black;
+        /*第一种解决方案*/
+        /* height: 122px; */
+
+        /*第二种解决方案*/
+        /* float: left; */
+
+        /*第三种解决方案*/
+        /* overflow: hidden; */
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        border: 1px solid black;
+        margin: 10px;
+      }
+      .box1,
+      .box2,
+      .box3,
+      .box4 {
+        float: left;
+      }
+      .mofa {
+        /*第四种解决方案*/
+        clear: both;
+      }
+      /*第五种解决方案  ==>推荐使用*/
+      .outer::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      /* 布局中的一个原则：设置浮动的时候，兄弟元素要么全都浮动，要么全都不浮动。 */
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+      <div class="box box4">4</div>
+      <!-- <div class="mofa"></div> -->
+    </div>
+    <!-- <div style="background-color: orange;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, illum magni porro ipsum pariatur illo. Nisi rem quibusdam necessitatibus quod modi vero quaerat porro minus ipsum commodi! Consequatur nobis suscipit explicabo velit officiis illo, optio sint et ratione! Autem earum, soluta hic ex officia, maxime rerum corporis est vero ad quisquam porro expedita doloribus culpa ab quam. Iure deserunt delectus voluptatem quam repudiandae natus, explicabo vitae. Harum nisi nesciunt, placeat error inventore aspernatur. Incidunt optio, adipisci maxime atque molestias necessitatibus earum odit eveniet, commodi ex quibusdam accusamus aperiam. Voluptate sed quidem consectetur omnis accusamus cumque quaerat asperiores porro enim cum.</div> -->
+  </body>
+</html>

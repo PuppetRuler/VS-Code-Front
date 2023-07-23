@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>相对定位</title>
+    <style>
+        /* 参考点:原来的位置 */
+        /* 1,不会脱离文档流，元素位置的变化，只是视觉效果上的变化，不会对其他元素产生任何影响。
+        2.定位元素的显示层级比普通元素高，无论什么定位，显示层级都是一样的。
+        默认规则是：
+            定位的元素会盖在普通元素之上。
+            都发生定位的两个元素，后写的元素会盖在先写的元素之上。
+        3.left不能和right一起设置，top和bottom不能一起设置。
+        4.相对定位的元素，也能继续浮动，但不推荐这样做。
+        5.相对行为的元素，也能通过margin调整位置，但不推荐这样做。 */
+        .outer {
+            width: 500px;
+            background-color: skyblue;
+            border: 1px solid black;
+            font-size: 20px;
+            padding: 20px;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+        .box1 {
+            background-color: #888;
+        }
+        .box2 {
+            background-color: orange;
+            position: relative;
+            left: 100px;
+        }
+        .box3 {
+            background-color: green;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+    </div>
+  </body>
+</html>

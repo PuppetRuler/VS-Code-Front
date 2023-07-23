@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>重置默认样式</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <style>
+      /* 此种方法，在简单案例中可以用一下，但实际开发中不会使用，因为*选择的是所有元素，而并不是所有的
+元素都有默认样式；而目我们重置时，有时候是需要做特定处理的，比如：想让a元素的文字是灰色，其他
+元素文字是蓝色。 */
+      /* * {
+        padding: 0;
+        margin: 0;
+      } */
+    </style>
+  </head>
+  <body>
+    <h1>一级标题</h1>
+    <h2>二级标题</h2>
+    <h3>三级标题</h3>
+    <h4>四级标题</h4>
+    <a href="http://www.baidu.com">去百度</a>
+    <ul>
+        <li>张三</li>
+        <li>李四</li>
+        <li>王五</li>
+    </ul>
+  </body>
+</html>
