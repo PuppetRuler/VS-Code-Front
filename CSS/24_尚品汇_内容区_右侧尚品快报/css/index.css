@@ -164,10 +164,38 @@
   height: 458px;
   background-color: green;
   margin: 0 10px;
+  background-image: url(../images/banner主图.png);
 }
 .main-content .slide-other {
   width: 290px;
   height: 458px;
-  background-color: orange;
 }
+.slide-other .message {
+  width: 260px;
+  height: 156px;
+  padding: 0 14px;
+  border: 1px solid #D9D9D9;
+}
+.slide-other .message .title {
+  height: 39px;
+  line-height: 39px;
+  border-bottom: 1px solid #D9D9D9;
+}
+.slide-other .message .title span {
+  font-style: 14px;
+}
+.slide-other .message .message-list li {
+  height: 26px;
+  line-height: 26px;
+}
+
+
+
+.slide-other .other-nav {
+  width: 290px;
+  height: 290px;
+  background-color: orange;
+  margin-top: 10px;
+}
+
 /* #endregion主要内容区 End */
