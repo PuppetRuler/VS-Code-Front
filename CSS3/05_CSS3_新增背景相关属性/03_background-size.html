@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_background-size</title>
+    <style>
+        div {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            background-image: url(./bg03.jpg);
+            background-repeat: no-repeat;
+            /* background-size: 400px 400px; */
+            /* background-size: 100% 100%; */
+            /* contain: 将背景图片等比缩放，使背景图片的宽或高，与容器的宽或高相等，再将"完整背景图片"包含在容器内，但要注意：可能会造成容器里部分区域没有背景图片。 */
+            /* background-size: contain; */
+            /* cover：将背景图片等比缩放，直到完全覆盖容器，图片会"尽可能全的"显示在元素上，但要注意：背景图片有可能显示不完整。--相对比较好的选择 */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

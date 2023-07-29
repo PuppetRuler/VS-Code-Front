@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>03_新增列表标签</title>
+    </head>
+    <body>
+        <form action="#">
+            <input type="text" list="mydata" />
+            <button>搜索</button>
+        </form>
+        <!-- 用于搜索框的关键字提示 -->
+        <datalist id="mydata">
+            <option value="周杰伦">周杰伦</option>
+            <option value="周冬雨">周冬雨</option>
+            <option value="马冬梅">马冬梅</option>
+            <option value="温兆伦">温兆伦</option>
+        </datalist>
+        <hr>
+        <!-- 用于展示问题和答案，或对专有名词进行解释  -->
+        <details>
+            <!-- 写在 details 的里面，用于指定问题或专有名词 -->
+            <summary>如何一夜暴富</summary>
+            <p>学习前端</p>
+        </details>
+    </body>
+</html>

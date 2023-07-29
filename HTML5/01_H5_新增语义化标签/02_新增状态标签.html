@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_新增状态标签</title>
+</head>
+<body>
+    <span>手机电量:</span>
+    <!-- 语义：定义已知范围内的标量测量。也被称为 gauge （尺度），双标签，例如：电量、磁盘用量等。 -->
+    <meter max="100" min="0" value="9" low="10" high="20" optimum="90"></meter>
+    <br>
+    <span>当前进度:</span>
+    <!-- 语义：显示某个任务完成的进度的指示器，一般用于表示进度条，双标签，例如：工作完成进度等。 -->
+    <progress max="100" value="60"></progress>
+</body>
+</html>

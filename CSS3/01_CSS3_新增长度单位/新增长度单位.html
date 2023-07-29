@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增长度单位</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: deepskyblue;
+        }
+        .box2 {
+            /* vw 视口宽度的百分之*(用到的比较多) */
+            /* vh 视口高度的百分之* */
+            width: 50vw;
+            height: 20vh;
+            background-color: green;
+            margin: 0 auto;
+        }
+        .box2 {
+            /* 了解 */
+            /* vmax max(宽，高)的百分之* */
+            /* vmin min(宽，高)的百分之* */
+            width: 20vmax;
+            height: 20vmax;
+            background-color: green;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">像素</div>
+    <div class="box box2">vw和vh</div>
+    <div class="box box3">vmax</div>
+</body>
+</html>

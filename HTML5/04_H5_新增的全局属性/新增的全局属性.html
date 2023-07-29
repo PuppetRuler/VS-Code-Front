@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增的全局属性</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 200px;
+            border: 1px solid black;
+        }
+        .box1 {
+            background-color: skyblue;
+            margin-bottom: 10px;
+        }
+        .box2 {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- contenteditable 表示元素是否可被用户编辑 -->
+    <!-- draggable 表示元素可以被拖动 -->
+    <!-- hidden 隐藏元素 -->
+    <!-- spellcheck 规定是否对元素进行拼写和语法检查 -->
+    <!-- contextmenu 规定元素的上下文菜单，在用户鼠标右键点击元素时显示。 -->
+    <!-- data-* 用于存储页面的私有定制数据。 -->
+    <div class="box box1" contenteditable="true" spellcheck="true">Lorem ipsum dolor sit amet.</div>
+    <div class="box box2" draggable="true" ondragend="go(event)" hidden data-a="1" data-b="2" data-c="3">Lorem ipsum dolor sit amet.</div>
+
+    <script>
+        function go(e) {
+            alert(e.x)
+        }
+    </script>
+</body>
+</html>
