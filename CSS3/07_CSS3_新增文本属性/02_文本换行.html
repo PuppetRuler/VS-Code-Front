@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_文本换行</title>
+    <style>
+        /* normal 文本超出边界自动换行，文本中的换行被浏览器识别为一个空格。（默认值）
+        pre 原样输出，与 pre 标签的效果相同。
+        pre-wrap 在 pre 效果的基础上，超出元素边界自动换行。
+        pre-line 在 pre 效果的基础上，超出元素边界自动换行，且只识别文本中的换行，空格会忽略。
+        nowrap 强制不换行 */
+        div {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        山回路转不见君
+        雪上空留马行处
+        山回路转不见君不见君不见君不见君不见君不见君不见君不见君不见君不见君
+        雪上空留马行处
+        山回路转不见君
+        雪上空留马行处
+        山回路转不见君
+        雪上空留马行处
+        山回路转不见君
+        雪上空留马行处
+    </div>
+</body>
+</html>

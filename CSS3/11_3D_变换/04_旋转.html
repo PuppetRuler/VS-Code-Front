@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_旋转</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            margin: 0 auto;
+            margin-top: 100px;
+            /* 开启3D空间 */
+            transform: preserve-3d;
+            /* 设置景深(有了透视效果，近大远小) */ /* none:不指定透视 --（默认值） */
+            perspective: 500px;
+            /* 设置透视点的位置 */
+            /* perspective-origin: 400px 102px ; */
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 255, 0.6);
+            /* transform: rotateX(30deg); */
+            /* transform: rotateY(30deg); */
+            /* 前 3 个参数分别表示坐标轴： x , y , z ，第 4 个参数表示旋转的角度，参数不允许省略。 */
+            transform: rotate3d(1,1,1,30deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">你好啊</div>
+    </div>
+</body>
+</html>
