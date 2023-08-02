@@ -67,7 +67,8 @@
   width: 80px;
   height: 36px;
   background-color: #dd302d;
-  vertical-align: top; /* 文本和其他样式默认是基线对齐，会对不准 */
+  vertical-align: top;
+  /* 文本和其他样式默认是基线对齐，会对不准 */
   background-image: url("../images/serch_icon.png");
   background-repeat: no-repeat;
   background-position: 28px 6px;
@@ -113,7 +114,8 @@
   font-size: 14px;
   height: 28px;
   line-height: 28px;
-  padding-left: 16px; /* 背景色填充padding，不填充margin */
+  padding-left: 16px;
+  /* 背景色填充padding，不填充margin */
 }
 .main-content .slide-nav li:hover {
   background-color: #dd302d;
@@ -121,7 +123,7 @@
 .main-content .slide-nav li:hover .second-menu {
   display: block;
 }
-.main-content .slide-nav li > a:hover {
+.main-content .slide-nav li>a:hover {
   color: white;
 }
 .main-content .slide-nav li .second-menu {

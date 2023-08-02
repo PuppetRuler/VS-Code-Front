@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_伸缩容器_伸缩项目</title>
+    <style>
+        /* 1,仅伸缩容器的子元素成为了伸缩项目，孙子元素、重孙子元素等后代，不是伸缩项目。 */
+        /* 2.无论原来是哪种元素（块、行内块、行内），一旦成为了伸缩项目，全都会“块状化”。 */
+        .outer {
+            width: 1000px;
+            height: 600px;
+            background-color: #888;
+            /* 将该元素变为了伸缩容器（开启了f1ex布局） */
+            display: flex;
+        }
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        .inner3 {
+            display: flex;
+        }
+        </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">1</div>
+        <div class="inner">2</div>
+        <div class="inner inner3">
+            <div>a</div>
+            <div>b</div>
+            <div>c</div>
+        </div>
+    </div>
+</body>
+</html>

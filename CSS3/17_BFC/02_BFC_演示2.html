@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_BFC_演示1</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+        .box1 {
+            background-color: orange;
+            float: left;
+            /* position: absolute; */
+            /* display: inline-block; */
+            /* display: table; */
+            /* overflow: auto; */
+            /* column-count: 1; */
+            /* display: flow-root; */
+        }
+        .box2 {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+</body>
+</html>

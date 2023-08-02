@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14_小案例</title>
+    <style>
+        * {
+            font-family: Arial;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            background-image: url(./images/bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .page-header {
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .header-nav {
+            display: flex;
+        }
+
+        .header-nav li a {
+            color: white;
+            font-size: 20px;
+            border: 1px solid white;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 0 10px;
+        }
+        .header-nav li:first-child a {
+            margin-left: 0;
+        }
+
+        .header-nav li:last-child a {
+            margin-right: 0;
+        }
+        .page-content {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+        .content-nav {
+            width: 1000px;
+            height: 300px;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .content-nav .item {
+            width: 180px;
+            height: 200px;
+            background-color: orange;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .content-nav .item:hover {
+            cursor: pointer;
+            box-shadow: 0 0 20px black;
+            transition: 0.2s;
+        }
+        .content-nav .item span {
+            font-size: 20px;
+            color: white;
+        }
+        .content-nav .item1 {
+            background-color: #595CA8;;
+        }
+        .content-nav .item2 {
+            background-color: #FF9D2E;;;
+        }
+        .content-nav .item3 {
+            background-color: #01A6DE;;
+        }
+        .content-nav .item4 {
+            background-color: #015E91;;
+        }
+        .content-nav .item5 {
+            background-color: #1DC128;;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="page-header">
+        <a href="#">
+            <img src="./images/logo.png" alt="logo">
+        </a>
+        <ul class="header-nav">
+            <li><a href="#">国内校区</a></li>
+            <li><a href="#">缅甸校区</a></li>
+            <li><a href="#">非洲校区</a></li>
+            <li><a href="#">美国校区</a></li>
+        </ul>
+    </div>
+    <!-- 内容区 -->
+    <div class="page-content">
+        <div class="content-nav">
+            <div class="item item1">
+                <img src="./images/item1.png" alt="">
+                <span>我的邮箱</span>
+            </div>
+            <div class="item item2">
+                <img src="./images/item2.png" alt="">
+                <span>云服务</span>
+            </div>
+            <div class="item item3"> 
+                <img src="./images/item3.png" alt="">
+                <span>手机课堂</span>
+            </div>
+            <div class="item item4"> 
+                <img src="./images/item4.png" alt="">
+                <span>微信服务</span>
+            </div>
+            <div class="item item5"> 
+                <img src="./images/item5.png" alt="">
+                <span>在线课堂</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

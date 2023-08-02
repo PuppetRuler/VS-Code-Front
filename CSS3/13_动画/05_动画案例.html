@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_动画案例</title>
+    <style>
+        div {
+            width: 130px;
+            height: 130px;
+            background-image: url(./图片/bike.png);
+            margin: 0 auto;
+            margin-top: 100px;
+            animation: bikeman 1s steps(31) infinite;
+        }
+        @keyframes bikeman {
+            from{}
+            to{
+                background-position: 0px -4030px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

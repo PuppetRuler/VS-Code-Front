@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_媒体查询_媒体特性</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            height: 200px;
+            line-height: 200px;
+            background: gray;
+            font-size: 100px;
+            text-align: center;
+        }
+
+        /* 且运算符 */
+        /* @media (min-width:700px) and (max-width:800px) {
+            h1 {
+                background-color: orange;
+            }
+        } */
+        /* @media screen and (min-width:700px) and (max-width:800px) {
+            h1 {
+                background-color: skyblue;
+            }
+        } */
+       
+        /* 或运算符 */
+        /* @media screen and (max-width:700px) or (min-width:800px) {
+            h1 {
+                background-color: orange;
+            }
+        } */
+
+        /* 否定运算符 */
+        /* @media not screen {
+            h1 {
+                background-color: orange;
+            }
+        } */
+
+        /* 肯定运算符 */
+        @media only screen {
+            h1 {
+                background-color: orange;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>你好啊</h1>
+</body>
+</html>
