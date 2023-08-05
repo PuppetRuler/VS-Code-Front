@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_数据类型</title>
+    <script type="text/javascript">
+        /* 数据类型指的就是字面量的类型
+            在JS中一共有六种数据类型
+            String字符串
+            Number数值
+            Boolean布尔值
+            Null空值
+            Undefined未定义
+            Object对象
+
+            其中String Number Boolean Null Undefined属于基本数据类型
+            而Object属于引用数据类型
+
+            在字符串中我们可以使用作为转义字符，当表示一些特殊符号时可以使用进行转义
+
+            JS中可以表示的数字的最大值:Number.MAX_VALUE
+            如果使用Number表示的数字超过了最大值，则会返回个Infinity(自变量，定义时不要"")
+            "abc"*"bcd"   ===>返回NaN,NaN是一个特殊的数字，表示Not A Number
+            使用typeof检查一个NaN也会返回number
+            如果使用JS进行浮点运算，可能得到一个不精确的结果所以千万不要使用]S进行对精确度要求比较高的运算
+
+            Null类型的值只有一个，就是null
+            使用typeof检查一个null值时，会返回object
+
+            Undefined类型的值只有一个，就undefined
+            当声明一个变量，但是并不给变量赋值时，它的值就是undefined使用typeof检查一个undefined时也会返回undefined
+
+            可以使用一个运算符typeof来检查一个变量的类型
+        */
+        var a = "hello";
+        var b;
+
+        a = "你好";
+
+        console.log(a);
+        console.log(typeof a);
+        console.log(Number.MAX_VALUE);
+        console.log(b);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
