@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_函数作为参数</title>
+    <script>
+        function fn(a) {
+            a();
+        }
+        /* 
+            在JS中，函数也是一个对象()(一等函数)
+        */
+        function fn2() {
+            console.log("我是fn2");
+        }
+        fn(fn2);
+        fn(() => console.log("我是箭头函数"))
+    </script>
+</head>
+<body>
+
+</body>
+</html>

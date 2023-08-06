@@ -6,17 +6,33 @@
     <title>05_对象作为参数</title>
     <script>
         function fn(a) {
-            console.log("a = ",a);
+            // console.log("a = ",a);
+            a.name = "猪八戒";  //修改对象时，如果有其他变量指向该对象则所有指向该对象的变量都会受到影响
+            console.log(a.name);
         }
 
         //对象可以作为参数传递
-        let obj = {name:"孙悟空"}
+        let obj = { name: "孙悟空" };
 
         // 传递实参时，传递并不是变量本身，而是变量中存储的值
-        fn(obj)
+        // fn(obj)
+        // console.log(obj);
+
+        // 如果a=obj2，则两次调用共用一个对象
+        let obj2 = { name: "沙和尚" };
+
+        // 函数每次调用，都会重新创建默认值
+        function fn2(a = { name: "沙和尚" }) {
+            console.log(a);
+            a.name = "唐僧";
+            console.log(a);
+        }
+
+        fn2();
+        fn2()
     </script>
 </head>
 <body>
-    
+
 </body>
 </html>

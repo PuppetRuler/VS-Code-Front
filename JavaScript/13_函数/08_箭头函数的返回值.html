@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_箭头函数的返回值</title>
+    <script>
+        /* 
+            箭头函数的返回值可以直接写在箭头后
+        */
+        const sum = (a, b) => a + b;
+
+        // 如果直接在箭头后设置对象字面量为返回值时，对象字面量必须使用()括起来
+        const fn = () => ({ name: "哈哈" });
+
+        let result = sum(123, 456);
+
+        result = fn();
+
+        console.log(result)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_函数的返回值</title>
+    <script>
+        function sum(a,b) {
+            // 计算完成后，将计算的结果返回而不是直接打印
+            // 在函数中，可以通过return关键字来指定函数的返回值
+            // 返回值就是函数的执行结果，函数调用完毕返回值便会作为结果返回
+            return a+b
+
+            // 任何值都可以作为返回值使用
+                // 如果return后不跟任何值，则相当于返回undefined
+                // 如果不写return,那么函数的返回值依然是undefined
+            // return一执行函数立即结束
+        }
+
+        let result = sum(2,4)
+        result = sum(result,6)
+        console.log(result)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

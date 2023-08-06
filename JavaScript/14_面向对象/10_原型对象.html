@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_原型对象</title>
+    <script>
+        class Person{
+            name="孙悟空"
+            age=18
+
+            sayHello(){
+                console.log("hello",this.name);
+            }
+        }
+
+        const p = new Person()
+
+        /* 
+            访问一个对象的原型对象
+                对象.__proto__
+                Object.getPrototypeOf(对象)
+
+            原型对象中的数据：
+                1.对象中的数据(属性，方法等)
+                2.constructor（对象的构造函数）
+
+            注意:
+                原型对象也有原型,这样就构成了一条原型链，根据对象的复杂程度不同，原型链的长度也不同
+                    p对象的原型链：p对象==>原型==>原型==>null
+                    obj对象的原型链：obj对象==>原型==>null
+
+                原型链：
+                    -读取对象属性时，会优先对象自身属性，
+                        如果对象中有，则使用，没有则去对象的原型中寻找
+                        如果原型中有，则使用，没有则去原型的原型中寻找
+                        直到找到object对象的原型(Object的原型没有原型（为null）)
+                            如果依然没有找到，则返回undefined
+                    -作用域链，是找变量的链
+                    -原型链，是找属性的链
+
+
+            所有的同类型对象它们的原型对象都是同一个
+                也就意味着，同类型对象的原型链是一样的
+
+            原型的作用：
+                原型就相当于是一个公共的区域，可以被所有该类实例访问，
+                        可以将该类实例中，所有的公共属性（方法）统一存储到原型中
+                        这样我们只需要创建一个属性，即可被所有实例访问
+                        JS中继承就是通过原型来实现的，
+                            当继承时，子类的原型就是一个父类的实例
+
+            在对象中有些值是对象独有的，像属性（name，age，gender）每个对象都应该有自己值，
+                但是有些值对于每个对象来说都是一样的，像各种方法，对于一样的值没必要重复的创建
+
+            JS中继承就是通过原型来实现的，
+                当继承时，子类的原型就是一个父类的实例
+        */
+        // console.log(p.__proto__)
+        console.log(Object.getPrototypeOf(p)===p.__proto__);
+        const obj = {}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
