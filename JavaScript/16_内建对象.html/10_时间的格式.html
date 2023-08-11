@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_时间的格式</title>
+    <script>
+        const d = new Date()//将日期转换为本地的字符串
+
+        // console.log(d.toLocaleDateString());//将日期转换为本地的字符串
+        // console.log(d.toLocaleTimeString());//将时间转换为本地的字符串
+
+        /* 
+            toLocaleString()
+                -可以将一个日期转换为本地时间格式的字符串
+                -参数
+                    1.描述语言和国家信息的字符串
+                        zh-CN中文中国
+                        zh-HK中文香港
+                        en-US英文美国
+                    2.需要一个对象作为参数，在对象中可以通过对象的属性来对日期的格式进行配置
+                        dateStyle  日期的风格
+                        timeStyle  时间的风格
+                            full
+                            long
+                            medium
+                            short
+                        hour12是否采用12小时值
+                            true
+                            false
+                        weekday星期的显示方式
+                            long
+                            short
+                            narrow
+                        year
+                            numeric
+                            2-digit
+
+        */
+
+        // console.log(d.toLocaleString("zh-CN"));
+        // console.log(d.toLocaleString("zh-HK"));
+        console.log(d.toLocaleString("zh-CN",{dateStyle:"full",timeStyle:"full"}));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_闭包</title>
+    <script>
+        /* 
+            函数在作用域，在函数创建时就己经确定的（词法作用域）
+                和调用的位置无关
+
+            闭包利用的就是词法作用域
+        */
+
+        let a = "全局变量a"
+
+        function fn(){
+            console.log(a);
+        }
+        function fn2() {
+            let a = "fn2中的a"
+
+            fn()
+        }
+
+        fn2()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

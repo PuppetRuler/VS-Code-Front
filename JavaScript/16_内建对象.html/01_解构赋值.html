@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_解构赋值</title>
+    <script>
+        /* 
+            解构赋值
+        */
+
+        const arr = ["孙悟空", "猪八戒", "沙和尚"];
+
+        // let a=arr[0]
+        // let b=arr[1]
+        // let c=arr[2]
+
+        let [a, b, c] = arr;  //声明同时解构赋值
+
+        let [d, e, f, g] = ["唐僧", "白骨精", "蜘蛛精", "玉兔精"];//声明同时解构
+
+        [d, e, f = 77, g = g] = [1, 2, 3];
+
+        let [n1, n2, ...n3] = [4, 5, 6, 7];  //解构数组时，可以使用..来设置获取多余的元素
+
+        //可以通过解构交换变量
+        let a1 = 10;
+        let a2 = 20;
+
+        [a1, a2] = [a2,a1];
+
+        // console.log("a1 = ",a1);
+        // console.log("a2 = ",a2);
+
+        /* 
+            数组中可以存储任意类型的数据，也可以存数组
+        */
+        
+        arr3 =[[1,2,3],[3,4,5]]
+    </script>
+</head>
+<body>
+
+</body>
+</html>

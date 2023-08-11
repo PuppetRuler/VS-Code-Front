@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_对象的复制</title>
+    <script>
+        const arr=["孙悟空", "猪八戒", "沙和尚"]
+
+        const arr2 = arr.slice()
+
+        // console.log(arr2===arr)
+        /* 
+            ...（展开运算符）
+                -可以将一个数组中的元素展开到另一个数组中或者作为函数的参数传递
+                -通过它也可以对数组进行浅复制
+        */
+
+        // const arr3 = [arr[0],arr[1],arr[2]]
+        // const arr3 = ['唐僧',...arr,'白骨精']
+
+
+        /* 
+            对象的复制
+                -object.assign（目标对象，被复制的对象）
+                -将被复制对象中的属性复制到目标对象重，并将目标对象返回
+                
+            -也可以使用展开运算符对对象进行复制
+        */
+
+        const obj={name:"孙悟空",age:18}
+
+        const obj2=Object.assign({},obj)
+
+        console.log(obj2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
