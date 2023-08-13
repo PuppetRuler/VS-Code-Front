@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_文档的加载</title>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <!-- 
+        网页是自上向下加载的，如果将s代码编写到网页的上边，
+            JS代码在执行时，网页还没有加载完毕，这时会出现无法获取到DOM对象的情况
+
+            如何解决这个问题：
+                1.将script标签编写到body的最后(优先级最高)(*****)
+                2.将代码编写到window.onload的回调函数中
+                    window.onload function (){
+                        const btn = document.getElementById("btn")
+                        console.log(btn)
+                    }
+                3.将代码编写到document.对象的DOMContentLoaded的回调函数中(执行时机更早)
+                    document.addEventListener("DOMContentLoaded",function() {
+                        const btn = document.getElementById("btn")
+                        console.log(btn)
+                    }
+                4.将代码编写到外部的js文件中，然后以defer的形式进行引入(执行时机更早，早于DOMContentLoaded)(*****)
+     -->
+    <script>
+        const btn = document.getElementById("btn")
+
+        btn.addEventListener('click',function(){
+            alert("点击成功")
+        })
+    </script>
+</body>
+</html>
