@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>39_贪食蛇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #main {
+            height: 420px;
+            width: 360px;
+            border: 10px #000 solid;
+            background-color: #b7d4a8;
+            border-radius: 20px;
+            margin: 50px auto;
+        }
+
+        #stage {
+            width: 304px;
+            height: 304px;
+            border: 2px solid #000;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #snake>div {
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            position: absolute;
+            border: 1px solid #b7d4a8;
+        }
+
+        #food {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 100px;
+            left: 120px;
+            display: flex;
+            flex-flow: wrap;
+        }
+
+        #food>div {
+            width: 5px;
+            height: 5px;
+            background-color: #000;
+            transform: rotate(45deg);
+        }
+
+        #info {
+            width: 304px;
+            margin: 0px auto;
+            display: flex;
+            justify-content: space-between;
+            font: bold 20px courier;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="stage">
+            <div id="snake">
+                <div></div>
+            </div>
+
+            <div id="food">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div id="info">
+            <div>SCORE:<span id="score">100</span></div>
+            <div>LEVEL:<span id="level">1</span></div>
+        </div>
+    </div>
+    <script>
+
+        /* 
+        最后要解决的问题:
+            1.禁止掉头
+            2.游戏终止
+            3.记分
+        */
+
+        //获取蛇
+        const snake = document.getElementById("snake");
+        const snakes = snake.getElementsByTagName("div");
+
+        //获取食物
+        const food = document.getElementById("food");
+
+        //食物的坐标应该在0-290之间
+        function changeFood() {
+            const foodX = Math.floor(Math.random() * 30) * 10;
+            const foodY = Math.floor(Math.random() * 30) * 10;
+
+            //设置食物的坐标
+            food.style.top = foodY + "px";
+            food.style.left = foodX + "px";
+        }
+
+        changeFood();
+
+        //声明蛇的方向
+        let dir;
+
+        /* 
+            绑定按键事件keydown keyup
+                键盘事件只能绑定给可以获取焦点的元素或者是document
+        */
+
+        const keyArr = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+
+        //创建一个对象
+        const reObj = {
+            "ArrowUp": "ArrowDown",
+            "ArrowDown": "ArrowUp",
+            "ArrowLeft": "ArrowRight",
+            "ArrowRight": "ArrowLeft"
+        };
+
+        /* 
+            游戏禁止掉头：
+                构成的要件：
+                    1.身体超过2
+                    2.不能是相反的方向
+                处理：
+                    保持原来的方向不变（不修改dir的值）
+        */
+        //Tips:为避免在更新图像前快速按两个按键，改变dir值，使得蛇可以反向运动，可以给蛇改变方向时上锁,页面刷新后解锁
+        let isChangeMoving = false;
+
+        document.addEventListener("keydown", (event) => {
+            if (isChangeMoving === false && keyArr.includes(event.key)) {
+                if (snakes.length < 2 || reObj[dir] !== event.key) {
+                    //设置方向
+                    dir = event.key;
+                    //上锁
+                    isChangeMoving = true;
+                }
+            }
+        });
+
+        /* 
+            要使得身体可以和头一起移动，只需要在蛇移动时，变化蛇尾巴的位置
+        */
+
+
+        setTimeout(function move() {
+            //获取蛇头
+            const head = snakes[0];
+
+            //获取蛇头的坐标
+            let headX = head.offsetLeft;
+            let headY = head.offsetTop;
+
+            switch (dir) {
+                case "ArrowUp":
+                    //向上移动蛇
+                    headY -= 10;
+                    break;
+                case "ArrowDown":
+                    //向下移动蛇
+                    headY += 10;
+                    break;
+                case "ArrowLeft":
+                    //向左移动蛇
+                    headX -= 10;
+                    break;
+                case "ArrowRight":
+                    //向右移动蛇
+                    headX += 10;
+                    break;
+            }
+
+            //检查蛇是否吃到食物
+            if (food.offsetLeft === head.offsetLeft && food.offsetTop === head.offsetTop) {
+                //改变食物位置
+                changeFood();
+                //添加一节身体
+                snake.insertAdjacentHTML("beforeend", "<div/>");
+            }
+
+            //判断是否撞墙
+            if (headX < 0 || headX > 290 || headY < 0 || headY > 290) {
+                //游戏结束
+                return alert("游戏结束~")
+            }
+
+            //判断是否撞到自己
+            for(let i=0;i<snakes.length-1;i++){
+                if(snakes[i].offsetLeft===headX && snakes[i].offsetTop===headY){
+                    return alert("游戏结束~")
+                }
+            }
+
+            //获取尾巴
+            const tail = snakes[snakes.length - 1];
+            //移动身体
+            tail.style.top = headY + "px";
+            tail.style.left = headX + "px";
+            //将尾巴移动到头的位置
+            snake.insertAdjacentElement("afterbegin", tail);
+
+            //解锁
+            isChangeMoving = false;
+
+            setTimeout(move, 150);
+        }, 150);
+
+    </script>
+</body>
+</html>

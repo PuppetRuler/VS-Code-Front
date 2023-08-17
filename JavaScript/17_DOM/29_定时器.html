@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29_定时器</title>
+</head>
+<body>
+    <script>
+        /* 
+            定时器的本质，就是在指定时间后将函数添加到消息队列中
+        */
+        // console.time();
+        // setTimeout(() => {
+        //     console.timeEnd();
+        //     console.log("定时器执行");
+        // }, 3000)
+
+        // //使程序卡6s
+        // const begin = Date.now()
+        // while (Date.now()-begin<6000){}
+
+        /* 
+            setInterval()每间隔一段时间就将函数添加到消息队列中
+                但是如果函数执行的速度比较慢，它是无法确保每次执行的间隔都是一样的
+        */
+        // console.time("间隔")
+        // setInterval(function(){
+        //     console.timeEnd("间隔")
+        //     console.log("定时器执行");
+        //     console.time("间隔")
+        // },3000)
+
+        //希望可以确保函数每次执行都有相同间隔
+        // console.time("间隔")
+        // setTimeout(function fn(){
+        //     console.timeEnd("间隔")
+        //     console.log("函数执行");
+        //     console.time("间隔")
+
+        //     //在setTimeout的回调函数的最后，再调用一个setTimeout
+        //     setTimeout(fn,3000)
+        // },3000)
+
+        setTimeout(function(){
+            console.log("1111");
+        },0)
+
+        console.log("2222");   //由于函数先进消息队列里排队，2222会在调用栈里先执行
+    </script>
+</body>
+</html>
