@@ -41,7 +41,7 @@
             height: 10px;
             position: absolute;
             top: 100px;
-            left: 120px;
+            left: 0px;
             display: flex;
             flex-flow: wrap;
         }
@@ -170,22 +170,30 @@
             let headX = head.offsetLeft;
             let headY = head.offsetTop;
 
+            //避免在吃到食物后结束游戏使得尾巴遗留在初始位置
+            let Y = snakes[snakes.length - 1].offsetTop;
+            let X = snakes[snakes.length - 1].offsetLeft;
+
             switch (dir) {
                 case "ArrowUp":
                     //向上移动蛇
                     headY -= 10;
+                    Y = snakes[snakes.length - 1].offsetTop + 10;
                     break;
                 case "ArrowDown":
                     //向下移动蛇
                     headY += 10;
+                    Y = snakes[snakes.length - 1].offsetTop - 10;
                     break;
                 case "ArrowLeft":
                     //向左移动蛇
                     headX -= 10;
+                    X = snakes[snakes.length - 1].offsetLeft + 10;
                     break;
                 case "ArrowRight":
                     //向右移动蛇
                     headX += 10;
+                    X = snakes[snakes.length - 1].offsetLeft - 10;
                     break;
             }
 
@@ -195,11 +203,15 @@
                 changeFood();
                 //添加一节身体
                 snake.insertAdjacentHTML("beforeend", "<div/>");
+                //立即将尾巴添加到原位置最后一个div的后面
+                snake.lastChild.style.top = Y + "px";
+                snake.lastChild.style.left = X + "px";
+
                 score++;
                 scoreSpan.textContent = score;
 
                 //检查等级
-                if (score % 10 === 0 && level<14) {
+                if (score % 10 === 0 && level < 14) {
                     level++;
                     levelSpan.textContent = level;
                 }
@@ -229,7 +241,7 @@
             //解锁
             isChangeMoving = false;
 
-            setTimeout(move, 300-(level-1)*20);
+            setTimeout(move, 300 - (level - 1) * 20);
         }, 300);
 
     </script>
