@@ -8,7 +8,7 @@
 <script>
     import Son from './Son.vue'
     export default {
-        name:'App',
+        name:'Child',
         components:{Son},
         setup(){
 
