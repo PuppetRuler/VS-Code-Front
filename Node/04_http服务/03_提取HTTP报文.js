@@ -2,7 +2,7 @@
 const http = require('http')
 
 //2.创建服务对象
-const server = http.createServer((request,respond)=>{
+const server = http.createServer((request,response)=>{
     //获取请求的方法
     // console.log(request.method);
     //获取请求的 url
@@ -13,7 +13,7 @@ const server = http.createServer((request,respond)=>{
     // console.log(request.headers);
     //获取请求的IP与端口
     // console.log(request.headers.host);
-    respond.end('Hello HTTP Server')  //设置响应体
+    response.end('Hello HTTP Server')  //设置响应体
 })
 
 //3.监听端口，启动服务
