@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server":"node ./创建HTTP服务.js",
-    "start":"node ./创建HTTP服务.js"
+    "server": "node ./创建HTTP服务.js",
+    "start": "node ./创建HTTP服务.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "puppet_math": "^1.0.0",
     "uniq": "^1.0.1"
   },
   "devDependencies": {
