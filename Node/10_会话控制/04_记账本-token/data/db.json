@@ -1,0 +1,28 @@
+{
+  "accounts": [
+    {
+      "id": "pZ_cmjPD6",
+      "title": "啊啊啊啊啊啊",
+      "time": "2023-09-20",
+      "type": "1",
+      "account": "900",
+      "remarks": "精神状态有点差"
+    },
+    {
+      "id": "qUJhSkEFI",
+      "title": "事项一",
+      "time": "2023-09-20",
+      "type": "-1",
+      "account": "500",
+      "remarks": "哈哈哈"
+    },
+    {
+      "id": "B8Czl45mP",
+      "title": "domo",
+      "time": "2023-09-19",
+      "type": "1",
+      "account": "12345678",
+      "remarks": "让我看看"
+    }
+  ]
+}
