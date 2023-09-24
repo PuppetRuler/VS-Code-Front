@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">jQuery发送AJAX请求</h2>
+        <hr>
+        <button class="btn btn-primary">GET</button>
+        <button class="btn btn-danger">POST</button>
+        <button class="btn btn-info">通用型方法ajax</button>
+    </div>
+    <script>
+        $('button').eq(0).click(function(){
+            $.get('http://127.0.0.1:8000/jQuery-server',{a:100,b:200},function(data){
+                console.log(data);
+            },'json')
+        })
+
+        $('button').eq(1).click(function(){
+            $.post('http://127.0.0.1:8000/jQuery-server',{a:100,b:200},function(data){
+                console.log(data);
+            },'json')
+        })
+
+        //ajax
+        $('button').eq(2).click(function(){
+            $.ajax({
+                //请求类型
+                type:'GET',
+                //url
+                url:'http://127.0.0.1:8000/jQuery-server',
+                //参数
+                data:{name:'shangguigu'},
+                //响应体结果
+                dataType:'json',
+                //成功的回调
+                success:function(data){
+                    console.log(data);
+                },
+                //超时设置
+                timeout:2000,
+                //错误的回调
+                error:function(){
+                    console.log('出错了！！！');
+                },
+                //请求头
+                headers:{a:100,b:200}
+            })
+        })
+    </script>   
+</body>
+</html>
