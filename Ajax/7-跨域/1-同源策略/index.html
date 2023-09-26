@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+</head>
+<body>
+    <h1>尚硅谷</h1>
+    <button>获取用户数据</button>
+    <script>
+        const btn = document.querySelector('button')
+        btn.addEventListener('click',()=>{
+            const xhr = new XMLHttpRequest()
+            //初始化
+            xhr.open('GET','/data')
+            //发送
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        console.log(xhr.response);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
