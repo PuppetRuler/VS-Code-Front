@@ -86,7 +86,7 @@ router.get('/account/:id', (req, res) => {
   let { id } = req.params;
 
   //获取对应账单
-  AccountModel.get({ _id: id }, (err, data) => {
+  AccountModel.find({ _id: id }, (err, data) => {
     //失败提醒
     if (err) {
       return res.json({
