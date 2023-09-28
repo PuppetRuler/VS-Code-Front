@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-race</title>
+</head>
+<body>
+    <!-- 应用场景:处理请求超时 -->
+    <script>
+        
+        let p1 = new Promise((resolve,reject) => {
+            setTimeout(() => {
+                resolve('OK')
+            },1000)
+        })
+        let p2 = Promise.resolve('Success')
+        let p3 = Promise.resolve(new Promise((resolve,reject) => {
+            resolve('Oh Yeah')
+        }))
+
+        const result = Promise.race([p1,p2,p3])
+
+        console.log(result);
+    </script>
+</body>
+</html>

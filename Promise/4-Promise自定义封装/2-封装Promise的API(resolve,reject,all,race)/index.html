@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise的API封装</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        /* API - resolve方法 */
+        // const p = Promise.resolve('OK')
+        // const p2 = Promise.resolve(new Promise((resolve,reject) => {
+        //     resolve('Oh Yes')
+        // }))
+        // const p3 = Promise.resolve(Promise.resolve('嘿嘿嘿'))
+
+        // console.log(p3);
+
+        /* API - reject方法 */
+        // const p = Promise.reject('OK')
+        // const p2 = Promise.reject(new Promise((resolve,reject) => {
+        //     resolve('Oh Yes')
+        // }))
+
+        // console.log(p);
+        // console.log(p2);
+
+        /* API - all方法 */
+        const p1 = new Promise((resolve,reject) => {
+            resolve('OK')
+        })
+        const p2 = Promise.resolve('oh Yeah')
+        const p3 = Promise.resolve('成功')
+
+        const result = Promise.race([p1,p2,p3])
+        console.log(result);
+    </script>
+</body>
+</html>

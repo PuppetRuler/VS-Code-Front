@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise初始结构</title>
+    <script src="./promise.js"></script>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject) => {
+            // resolve('OK')
+            // reject('error')
+            // 抛出异常
+            // throw '失败'
+            setTimeout(() => {
+                // resolve('OK')
+                reject('Error')
+            }, 1000);
+        })
+
+
+        // const res = p.then((value) => {
+        //     // console.log(value);
+        //     return new Promise((resolve,reject) => {
+        //         resolve('hello Promise')
+        //     })
+        // },(reason) => {
+        //     console.warn(reason);
+        // })
+
+        // const res = p.catch((reason) => {
+        //     console.warn(reason);
+        // })
+
+        // console.log(res);
+        
+        const res = p.then(value=>{
+            console.log('111');
+        }).then(value=>{
+            console.log('222');
+        }).then(value=>{
+            console.log('333');
+        }).catch(reason => {
+            console.log(reason);
+        })
+
+    </script>
+</body>
+</html>
