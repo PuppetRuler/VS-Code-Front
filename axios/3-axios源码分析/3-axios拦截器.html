@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios其他使用</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">基本使用</h2>
+        <button class="btn btn-primary">发送GET请求</button>
+        <button class="btn btn-warning">发送POST请求</button>
+        <button class="btn btn-success">发送PUT请求</button>
+        <button class="btn btn-danger">发送DELETE请求</button>
+    </div>
+    <script>
+        // Promise
+        // 设置请求拦截器  config:配置对象
+        axios.interceptors.request.use(function (config) {
+            //修改config中的参数
+            config.params = {a:100}
+            console.log('请求拦截器  成功 -1');
+            return config;
+        }, function (error) {
+            console.log('请求拦截器  失败 -1');
+            return Promise.reject(error);
+        });
+        // 设置请求拦截器
+        axios.interceptors.request.use(function (config) {
+            config.timeout = 3000
+            console.log('请求拦截器  成功 -2');
+            return config;
+        }, function (error) {
+            console.log('请求拦截器  失败 -2');
+            return Promise.reject(error);
+        });
+
+        // 设置响应拦截器
+        axios.interceptors.response.use(function (response) {
+            console.log('响应拦截器  成功 -1');
+            return response.data;
+        }, function (error) {
+            console.log('响应拦截器  失败 -1');
+            return Promise.reject(error);
+        });
+        // 设置响应拦截器
+        axios.interceptors.response.use(function (response) {
+            console.log('响应拦截器  成功 -2');
+            return response;
+        }, function (error) {
+            console.log('响应拦截器  失败 -2');
+            return Promise.reject(error);
+        });
+
+        axios({
+            method:'GET',
+            url:'http://localhost:3000/posts'
+        }).then(response => {
+            console.log('响应成功的回调');
+            console.log(response);
+        }).catch(reason => {
+            console.log('自定义失败的回调');
+        })
+    </script>
+</body>
+</html>
