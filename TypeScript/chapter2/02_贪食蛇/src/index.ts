@@ -1,3 +1,5 @@
 // 引入样式
 import './style/index.less'
-console.log('hello');
+import GameControl from './modules/GameControl'
+
+const gc = new GameControl()
