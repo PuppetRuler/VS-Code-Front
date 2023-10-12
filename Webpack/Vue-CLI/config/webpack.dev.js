@@ -1,11 +1,13 @@
 const path = require('path');
+const {DefinePlugin} = require('webpack')
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 // 返回处理样式loader
 function getStylesLoader(pre) {
     return [
-        "style-loader",
+        "vue-style-loader",
         "css-loader",
         {
             // 处理css兼容性问题
@@ -21,7 +23,7 @@ function getStylesLoader(pre) {
     ].filter(Boolean);
 }
 
-modules.exports = {
+module.exports = {
     entry: "./src/main.js",
     output: {
         path: undefined,
@@ -29,7 +31,7 @@ modules.exports = {
         chunkFilename: "static/js/[name].chunk.js",
         assetModuleFilename: "static/media/[hash:10][ext][query]",
     },
-    modules: {
+    module: {
         rules: [
             // 处理css
             {
@@ -73,6 +75,10 @@ modules.exports = {
                     cacheCompression: false,
                 },
             },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
         ],
     },
     // 处理html
@@ -86,6 +92,13 @@ modules.exports = {
         new HTMLWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html")
         }),
+        new VueLoaderPlugin(),
+        // cross-env定义的环境变量给打包工具使用
+        // DefinePlugin定义环境变量给源代码使用，从而解决vue3页面警告的问题
+        new DefinePlugin({
+            __VUE_OPTIONS_API__:true,
+            __VUE_PROD_DEVTOOLS__ :false,
+        }),
     ],
     mode: "development",
     devtool: "cheap-module-source-map",
@@ -98,10 +111,16 @@ modules.exports = {
             name: (entrypoint) => `runtime~${entrypoint.name}.js`
         },
     },
+    // webpack解析模块加载选项
+    resolve: {
+        // 自动补全文件拓展名
+        extensions: [".vue", ".js", ".json"],
+    },
     devServer: {
         host: "localhost",
         port: 3000,
         open: false,
-        hot: true
+        hot: true, // 开启HMR
+        historyApiFallback: true, // 解决前端路由刷新404问题
     }
 };
