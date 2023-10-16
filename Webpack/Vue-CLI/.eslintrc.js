@@ -9,6 +9,6 @@ module.exports = {
     },
     rules: {
       'vue/multi-word-component-names': 0,
-      "vetur.validation.template":false,
+      "vetur.validation.template":0,
     },
   };

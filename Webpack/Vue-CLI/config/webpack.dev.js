@@ -67,7 +67,7 @@ module.exports = {
             },
             // 处理js
             {
-                test: /\.(jsx|js)$/,
+                test: /\.(js)$/,
                 include: path.resolve(__dirname, "../src"),
                 loader: "babel-loader",
                 options: {
