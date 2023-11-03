@@ -1,0 +1,9 @@
+<template name="myTem">
+    <view>
+        <view class="title">这是自定义模板内容</view>
+        <view class="userInfo">
+            <view class="name">name:{{name}}</view>
+            <view class="age">age:{{age}}</view>
+        </view>
+    </view>
+</template>

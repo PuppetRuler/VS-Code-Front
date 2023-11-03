@@ -1,0 +1,46 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": [],
+		"include": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"ignoreUploadUnusedFiles": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.13.1",
+	"appid": "wxc6e278cdd6454ba5",
+	"projectname": "guiguyunyinyue_study",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"editorSetting": {
+		"tabIndent": "insertSpaces",
+		"tabSize": 4
+	},
+	"packNpmRelationList": [
+		{
+			"packageJsonPath": "./package.json",
+			"miniprogramNpmDistDir": "./miniprogram/"
+		}
+	],
+	"condition": {}
+}
