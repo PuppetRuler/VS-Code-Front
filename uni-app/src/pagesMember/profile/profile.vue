@@ -21,6 +21,7 @@
 
     // 更新用户头像
     const onAvatarChange = () => {
+        // #ifdef MP-WEIXIN
         // 调用拍照/选择图片
         uni.chooseMedia({
             // 文件个数
@@ -31,27 +32,43 @@
                 // 图片的本地文件路径
                 const { tempFilePath } = res.tempFiles[0]
                 // 上传文件
-                uni.uploadFile({
-                    url: '/member/profile/avatar', //接口地址
-                    name: 'file', // 接口参数
-                    filePath: tempFilePath, //文件路径
-                    success(res) {
-                        if (res.statusCode === 200) {
-                            // 更新头像
-                            profile.value!.avatar = JSON.parse(res.data).result.avatar
-                            uni.showToast({
-                                icon: 'success',
-                                title: '更新成功',
-                            })
-                            memberStore.profile!.avatar = profile.value.avatar
-                        } else {
-                            uni.showToast({
-                                icon: 'error',
-                                title: '更新失败',
-                            })
-                        }
-                    },
-                })
+                uploadFile(tempFilePath)
+            },
+        })
+        // #endif
+
+        // #ifdef APP-PLUS || H5
+        uni.chooseImage({
+            count: 1,
+            success: (success) => {
+                uploadFile(success.tempFilePaths[0])
+            },
+        })
+        // #endif
+    }
+
+    // 上传文件  封装
+    const uploadFile = (tempFilePath: string) => {
+        // 上传文件
+        uni.uploadFile({
+            url: '/member/profile/avatar', //接口地址
+            name: 'file', // 接口参数
+            filePath: tempFilePath, //文件路径
+            success(res) {
+                if (res.statusCode === 200) {
+                    // 更新头像
+                    profile.value!.avatar = JSON.parse(res.data).result.avatar
+                    uni.showToast({
+                        icon: 'success',
+                        title: '更新成功',
+                    })
+                    memberStore.profile!.avatar = profile.value.avatar
+                } else {
+                    uni.showToast({
+                        icon: 'error',
+                        title: '更新失败',
+                    })
+                }
             },
         })
     }
