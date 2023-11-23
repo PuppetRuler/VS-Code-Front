@@ -2,20 +2,17 @@
     import { useGuessList } from '@/composables'
     import { onReady, onLoad } from '@dcloudio/uni-app'
     import { ref } from 'vue'
-    import type { OrderResult } from '../../types/order'
+    import type { LogisticItem, OrderResult } from '@/types/order'
     import {
         getMemberOrderByIdApi,
         getMemberOrderConsignmentByIdApi,
         getPayMockApi,
         getPayWxPayMiniPayApi,
-    } from '../../services/order'
-    import { OrderState, orderStateList } from '../../services/constants'
-    import {
         putMemberOrderIdReceiptApi,
         getMemberOrderLogisticsByIdApi,
-    } from '../../services/order'
-    import type { LogisticItem } from '../../types/order'
-    import { deleteMemberOrderApi } from '../../services/order'
+        deleteMemberOrderApi,
+    } from '@/services/order'
+    import { OrderState, orderStateList } from '@/services/constants'
 
     // 获取屏幕边界到安全区域距离
     const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -46,8 +43,13 @@
 
     // 获取页面栈集合
     const pages = getCurrentPages()
+
+    // 基于小程序的 Page 类型扩展 uni-app 的 Page
+    type PageInstance = Page.PageInstance & WechatMiniprogram.Page.InstanceMethods<any>
+
+    // #ifdef MP-WEIXIN
     // 获取当前页面实例(最后一项)
-    const pageInstance = pages.at(-1) as any
+    const pageInstance = pages.at(-1) as PageInstance
     // 页面渲染完成，绑定关键帧动画
     onReady(() => {
         // 动画效果-导航栏背景色
@@ -82,6 +84,7 @@
             endScrollOffset: 50,
         })
     })
+    // #endif
 
     // 获取订单详情
     const order = ref<OrderResult>()
@@ -98,7 +101,7 @@
         }
     }
 
-    // 获取订单详情
+    // 获取物流详情
     const logisticList = ref<LogisticItem[]>([])
     const getMemberOrderLogisticsByIdData = async () => {
         const res = await getMemberOrderLogisticsByIdApi(query.id)
@@ -117,34 +120,41 @@
     }
 
     // 订单支付
-    // #ifdef MP-WEIXIN
     const onOrderPay = async () => {
         // 支付订单
         if (import.meta.env.DEV) {
             // 开发环境: 模拟支付-更新订单支付状态
             await getPayMockApi({ orderId: query.id })
         } else {
-            // 生成环境:根据订单号获取为微信支付所需参数
+            // #ifdef MP-WEIXIN
+            // 生产环境:根据订单号获取为微信支付所需参数
             const res = await getPayWxPayMiniPayApi({ orderId: query.id })
             // 发起微信支付
             await wx.requestPayment(res.result)
+            // #endif
+
+            // #ifdef H5 || APP-PLUS
+            // H5端 和 App 端未开通支付-模拟支付体验
+            await getPayMockApi({ orderId: query.id })
+            // #endif
         }
         // 支付成功，关闭当前页面，跳转到支付页
         uni.redirectTo({
             url: `/pagesOrder/payment/payment?id=${query.id}`,
         })
     }
-    // #endif
 
     // 获取开发环境
     const isDev = import.meta.env.DEV
     // 点击模拟发货
     const onOrderSend = async () => {
         // 调用模拟发货
-        await getMemberOrderConsignmentByIdApi(query.id)
-        uni.showToast({ icon: 'success', title: '模拟发货成功' })
-        // 手动修改订单状态
-        order.value!.orderState = OrderState.DaiShouHuo
+        if (isDev) {
+            await getMemberOrderConsignmentByIdApi(query.id)
+            uni.showToast({ icon: 'success', title: '模拟发货成功' })
+            // 手动修改订单状态
+            order.value!.orderState = OrderState.DaiShouHuo
+        }
     }
 
     // 点击确认收货
@@ -194,21 +204,21 @@
         </view>
     </view>
     <scroll-view scroll-y class="viewport" id="scroller" @scrolltolower="onScrolltolower">
-        <template v-if="true">
+        <template v-if="order">
             <!-- 订单状态 -->
             <view class="overview" :style="{ paddingTop: safeAreaInsets!.top + 20 + 'px' }">
                 <!-- 待付款状态:展示去支付按钮和倒计时 -->
-                <template v-if="order?.orderState === OrderState.DaiFuKuan">
+                <template v-if="order.orderState === OrderState.DaiFuKuan">
                     <view class="status icon-clock">等待付款</view>
                     <view class="tips">
-                        <text class="money">应付金额: {{ order?.payMoney }}元</text>
+                        <text class="money">应付金额: {{ order.payMoney }}元</text>
                         <text class="time">支付剩余</text>
                         <uni-countdown
                             color="#fff"
                             splitor-color="#fff"
                             :showDay="false"
                             :show-colon="false"
-                            :second="order?.countdown"
+                            :second="order.countdown"
                             @timeup="onTimeup"
                         />
                     </view>
@@ -217,7 +227,7 @@
                 <!-- 其他订单状态:展示再次购买按钮 -->
                 <template v-else>
                     <!-- 订单状态文字 -->
-                    <view class="status"> {{ orderStateList[order!.orderState].text }} </view>
+                    <view class="status"> {{ orderStateList[order.orderState].text }} </view>
                     <view class="button-group">
                         <navigator
                             class="button"
@@ -345,7 +355,11 @@
                         再次购买
                     </navigator>
                     <!-- 待收货状态: 展示确认收货 -->
-                    <view class="button primary" v-if="order?.orderState === OrderState.DaiShouHuo">
+                    <view
+                        class="button primary"
+                        v-if="order?.orderState === OrderState.DaiShouHuo"
+                        @tap="onOrderConfirm"
+                    >
                         确认收货
                     </view>
                     <!-- 待评价状态: 展示去评价 -->

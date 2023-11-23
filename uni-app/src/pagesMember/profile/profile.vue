@@ -85,12 +85,22 @@
 
     let fullLocationCode: [string, string, string] = ['', '', '']
     // 更新城市
+    // #ifdef MP-WEIXIN
     const onRegionChange: UniHelper.RegionPickerOnChange = (event) => {
         // 前端数据更新
         profile.value.fullLocation = event.detail.code?.join(' ')
         // 后端数据更新
         fullLocationCode = event.detail.code!
     }
+    // #endif
+    // #ifdef H5 || APP-PLUS
+    const onCityChange: UniHelper.UniDataPickerOnChange = (event) => {
+        // 前端数据更新
+        profile.value.fullLocation = event.detail.value.map((v) => v.text).join(' ')
+        // 后端数据更新
+        fullLocationCode = event.detail.value.map((v) => v.value) as [string, string, string]
+    }
+    // #endif
 
     // 点击保存提交表单
     const onSubmit = async () => {
@@ -184,6 +194,7 @@
                 </view>
                 <view class="form-item">
                     <text class="label">城市</text>
+                    <!-- #ifdef MP-WEIXIN -->
                     <picker
                         class="picker"
                         mode="region"
@@ -193,6 +204,24 @@
                         <view v-if="profile">{{ profile?.fullLocation }}</view>
                         <view class="placeholder" v-else>请选择城市</view>
                     </picker>
+                    <!-- #endif -->
+                    <!-- #ifdef H5 || APP-PLUS -->
+                    <uni-data-picker
+                        placeholder="请选择地址"
+                        popup-title="请选择城市"
+                        collection="opendb-city-china"
+                        field="code as value, name as text"
+                        orderby="value asc"
+                        :step-searh="true"
+                        self-field="code"
+                        parent-field="parent_code"
+                        :clear-icon="false"
+                        @change="onCityChange"
+                    >
+                        <view v-if="profile">{{ profile?.fullLocation }}</view>
+                        <view class="placeholder" v-else>请选择城市</view>
+                    </uni-data-picker>
+                    <!-- #endif -->
                 </view>
                 <view class="form-item">
                     <text class="label">职业</text>
@@ -211,6 +240,12 @@
 </template>
 
 <style lang="scss">
+    /* #ifdef H5 || APP-PLUS */
+    :deep(.selected-area) {
+        height: auto;
+        flex: 0 1 auto;
+    }
+    /* #endif */
     page {
         background-color: #f4f4f4;
     }

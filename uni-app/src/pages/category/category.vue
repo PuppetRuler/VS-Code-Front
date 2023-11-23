@@ -131,7 +131,7 @@
     /* 一级分类 */
     .primary {
         overflow: hidden;
-        width: 180rpx;
+        width: 160rpx;
         flex: none;
         background-color: #f6f6f6;
         .item {
@@ -207,6 +207,9 @@
             .goods {
                 width: 150rpx;
                 margin: 0rpx 30rpx 20rpx 0;
+                /* #ifdef APP-PLUS || H5 */
+                margin: 0rpx 25rpx 20rpx 0;
+                /* #endif */
                 &:nth-child(3n) {
                     margin-right: 0;
                 }

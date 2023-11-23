@@ -271,6 +271,10 @@
     .toolbar .icons .navigator-wrap {
         flex: 1;
     }
+    :deep(uni-image) {
+        height: 100%;
+        width: 100%;
+    }
     /* #endif */
     page {
         height: 100%;

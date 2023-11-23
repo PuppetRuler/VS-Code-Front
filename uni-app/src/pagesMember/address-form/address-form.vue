@@ -42,13 +42,25 @@
     })
 
     // 获取省市区
+    // #ifdef MP-WEIXIN
     const onRegionChange: UniHelper.RegionPickerOnChange = (event) => {
         // 省市区(前端展示)
         form.value.fullLocation = event.detail.value.join(' ')
         // 后端参数
         const [provinceCode, cityCode, countyCode] = event.detail.code!
         Object.assign(form.value, { provinceCode, cityCode, countyCode })
+        console.log(countyCode)
     }
+    // #endif
+
+    // #ifdef H5 || APP-PLUS
+    const onCityChange: UniHelper.UniDataPickerOnChange = (event) => {
+        // 后端参数
+        const [provinceCode, cityCode, countyCode] = event.detail.value.map((v) => v.value)
+        // 合并数据
+        Object.assign(form.value, { provinceCode, cityCode, countyCode })
+    }
+    // #endif
 
     // 是否设为默认地址
     const onSwitchChange: UniHelper.SwitchOnChange = (event) => {
@@ -66,7 +78,7 @@
                 { pattern: /^1[3-9]\d{9}$/, errorMessage: '请填入联系方式' },
             ],
         },
-        fullLocation: {
+        countyCode: {
             rules: [{ required: true, errorMessage: '请填入收货地址' }],
         },
         address: {
@@ -114,8 +126,9 @@
                 <text class="label">手机号码</text>
                 <input class="input" placeholder="请填写收货人手机号码" v-model="form.contact" />
             </uni-forms-item>
-            <uni-forms-item name="fullLocation" class="form-item">
+            <uni-forms-item name="countyCode" class="form-item">
                 <text class="label">所在地区</text>
+                <!-- #ifdef MP-WEIXIN -->
                 <picker
                     @change="onRegionChange"
                     class="picker"
@@ -125,6 +138,25 @@
                     <view v-if="form.fullLocation">{{ form.fullLocation }}</view>
                     <view v-else class="placeholder">请选择省/市/区(县)</view>
                 </picker>
+                <!-- #endif -->
+                <!-- #ifdef H5 || APP-PLUS -->
+                <uni-data-picker
+                    placeholder="请选择地址"
+                    popup-title="请选择城市"
+                    collection="opendb-city-china"
+                    field="code as value, name as text"
+                    orderby="value asc"
+                    :step-searh="true"
+                    self-field="code"
+                    parent-field="parent_code"
+                    :clear-icon="false"
+                    @change="onCityChange"
+                    v-model="form.countyCode"
+                >
+                    <view v-if="form.fullLocation">{{ form.fullLocation }}</view>
+                    <view v-else class="placeholder">请选择省/市/区(县)</view>
+                </uni-data-picker>
+                <!-- #endif -->
             </uni-forms-item>
             <uni-forms-item name="address" class="form-item">
                 <text class="label">详细地址</text>
@@ -143,10 +175,15 @@
     </view>
     <!-- 提交按钮 -->
     <button @tap="onSubmit" class="button">保存并使用</button>
-    <view>{{ form }}</view>
 </template>
 
 <style lang="scss">
+    /* #ifdef H5 || APP-PLUS */
+    :deep(.selected-area) {
+        height: auto;
+        flex: 0 1 auto;
+    }
+    /* #endif */
     page {
         background-color: #f4f4f4;
     }
@@ -218,4 +255,3 @@
         background-color: #27ba9b;
     }
 </style>
-../../services/address
