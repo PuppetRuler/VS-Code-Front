@@ -119,7 +119,7 @@ class Snake {
 
     // 检查蛇头撞到身体的方法
     checkHeadBody(){
-        for(let i = 1; i>0 ; i++){
+        for(let i = 0; i>0 ; i++){
             let bd = this.bodies[i] as HTMLElement
             if(this.X === bd.offsetLeft && this.Y === bd.offsetTop){
                 // 进入判断说明蛇头撞到了身体，游戏结束
