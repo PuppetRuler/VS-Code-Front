@@ -11,4 +11,5 @@ module.exports = {
       'vue/multi-word-component-names': 0,
       "vetur.validation.template":0,
     },
+    requireConfigFile: false
   };
