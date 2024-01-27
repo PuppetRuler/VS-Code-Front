@@ -12,7 +12,7 @@
             <el-dropdown class="avatar-container" trigger="click">
                 <div class="avatar-wrapper">
                     <!-- 头像 -->
-                    <img v-if="avatar" :src="avatar" class="user-avatar" >
+                    <img v-if="avatar" :src="avatar" class="user-avatar" />
                     <span v-else class="username">{{ name?.charAt(0) }}</span>
                     <!-- 用户名称 -->
                     <span class="name">{{ name }}</span>
@@ -29,10 +29,7 @@
                     >
                         <el-dropdown-item>项目地址</el-dropdown-item>
                     </a>
-                    <a
-                        target="_blank"
-                        href="https://panjiachen.github.io/vue-element-admin-site/#/"
-                    >
+                    <a target="_blank" @click.prevent="updatePassword">
                         <el-dropdown-item>修改密码</el-dropdown-item>
                     </a>
                     <!-- native修饰符 -->
@@ -43,6 +40,26 @@
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
+        <!-- 放置dialog -->
+        <!-- sync --- 可以传递子组件传递过来的事件和值 -->
+        <el-dialog center width="400px" title="修改密码" :visible.sync="showDialog" :append-to-body="true" @close="btnCancel" >
+            <!-- 放置表单 -->
+            <el-form ref="passForm" label-width="auto" :model="passForm" :rules="rules">
+                <el-form-item label="旧密码" prop="oldPassword">
+                    <el-input show-password v-model="passForm.oldPassword" placeholder="请输入" size="small" />
+                </el-form-item>
+                <el-form-item label="新密码" prop="newPassword">
+                    <el-input show-password v-model="passForm.newPassword" placeholder="请输入" size="small" />
+                </el-form-item>
+                <el-form-item label="重复密码" prop="confirmPassword">
+                    <el-input show-password v-model="passForm.confirmPassword" placeholder="请输入" size="small" />
+                </el-form-item>
+                <div class="submit" style="display: flex; justify-content: space-evenly;">
+                    <el-button @click="btnOK" size="mini" type="primary" >确认密码</el-button>
+                    <el-button @click="btnCancel" size="mini" >取消</el-button>
+                </div>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 
@@ -50,11 +67,53 @@
 import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
+import { updatePassword } from '@/api/user'
 
 export default {
     components: {
         Breadcrumb,
         Hamburger,
+    },
+    data() {
+        return {
+            showDialog: false, // 控制是否弹层
+            passForm: {
+                oldPassword: '', // 旧密码
+                newPassword: '', // 新密码
+                confirmPassword: '' // 确认密码
+            },
+            rules: {
+                oldPassword: [{
+                    required: true,
+                    message: '请输入旧密码',
+                    trigger: 'blur'
+            }], // 旧密码
+                newPassword: [{
+                    required: true,
+                    message: '请输入新密码',
+                    trigger: 'blur'
+            }, {
+                trigger: 'blur',
+                min: 6,
+                max: 16,
+                message: '新密码长度在6-16位之间'
+            }], // 新密码
+                confirmPassword: [{
+                    required: true,
+                    message: '请确认密码',
+                    trigger: 'blur'
+            }, {
+                trigger: 'blur',
+                validator: (rule, value, callback) => {
+                    if (value === this.passForm.newPassword) {
+                       callback()
+                    } else {
+                        callback(new Error('两次输入的密码不一致'))
+                    }
+                }
+            }] // 确认密码
+            },
+        };
     },
     computed: {
         ...mapGetters(["sidebar", "avatar", "name"]),
@@ -66,8 +125,31 @@ export default {
         async logout() {
             // 调用退出登录的action
             await this.$store.dispatch("user/logout");
-            this.$router.replace('/login')
+            this.$router.replace("/login");
         },
+        updatePassword() {
+            // 弹出弹层
+            this.showDialog = true;
+        },
+        btnOK() {
+            this.$refs.passForm.validate(async isOK => {
+                if (isOK) {
+                    // 调用接口
+                    await updatePassword(this.passForm)
+                    // 重置表单
+                    // 关闭弹窗
+                    this.btnCancel()
+                    // 轻提示
+                    this.$message.success('密码修改成功')
+                }
+            })
+        },
+        btnCancel() {
+            // 重置表单
+            this.$refs.passForm.resetFields()
+            // 关闭弹窗
+            this.showDialog = false
+        }
     },
 };
 </script>
