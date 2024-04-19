@@ -30,9 +30,9 @@ request.interceptors.response.use((response) => {
     return Promise.reject(new Error(message));
   }
 }, async (error) => {
-  Message({ type: 'warn', message: 'token校验失败' });
   // token校验失败
   if (error.response.status === 401) {
+    Message({ type: 'warn', message: 'token校验失败' });
     // 退出登录
     await store.dispatch('user/logout');
     // 主动跳到登录页
